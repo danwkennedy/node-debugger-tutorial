@@ -1,0 +1,30 @@
+version: '2'
+services:
+  batman:
+    build:
+      context: ./
+      args:
+        - NODE_ENV=development
+    ports:
+      - "9000:8080"
+      - "9100:9229"
+    volumes:
+      # share your local project folder for edits without rebuilding container
+      - ./:/app
+    environment:
+      NAME: "Batman"
+    command: npm run dev
+
+  superman:
+    build:
+      context: ./
+      args:
+        - NODE_ENV=development
+    ports:
+      - "9001:8080"
+      - "9101:9229"
+    volumes:
+      - ./:/app
+    environment:
+      NAME: "Superman"
+    command: npm run dev
